@@ -110,7 +110,8 @@ app.post('/login', async (req, res) => {
         res.status(200).send({
             success: true,
             message: 'User logged in successfully',
-            user
+            user,
+            token
         })
 
 
