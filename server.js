@@ -209,7 +209,38 @@ app.get('/getallpost', async (req, res) => {
         })
     }   
 })
+// Get User Profile
+app.get('/profile/:userId', async (req, res) => {
+  try {
+    const user = await usermodules.findById(req.params.userId)
+      .select('-password -photo.data'); // Exclude sensitive data
+    
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
 
+    // Get user's posts
+    const posts = await Photomodel.find({ creator: req.params.userId })
+      .select('-photo.data');
+
+    res.status(200).json({
+      success: true,
+      user,
+      posts
+    });
+    
+  } catch (error) {
+    console.error('Profile error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch profile',
+      error: error.message
+    });
+  }
+});
 app.listen(3000, () => {
     console.log('server is started sccessfully')
 })
