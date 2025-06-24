@@ -6,12 +6,13 @@ import Photomodel from './uplodmodel.js'
 import path from 'path'
 import usermodules from "./usermodules.js";
 import JWT from 'jsonwebtoken';
+import cors from 'cors';
 const app = express()
 const connect = mongoose.connect('mongodb+srv://sabihop56:Mypassword12@cluster0.vfwnugr.mongodb.net/ecommerce?retryWrites=true&w=majority').then(() => { console.log('mongo db is connected 🌮') }).catch(() => { console.log('mongodb cant connected') })
 
 // middelware
 app.use(formidable())
-
+app.use(cors())
 app.post('/uplodimg', async (req, res) => {
     try {
             const {photo} = req.files
