@@ -24,6 +24,7 @@ app.post('/uplodimg', async (req, res) => {
                 comments,
                 followers,
                 likes,
+                creator,
                 photo: {
                     name: photo.originalFilename,
                     data: data,

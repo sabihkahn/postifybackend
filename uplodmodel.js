@@ -26,6 +26,8 @@ const postschema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  creator: String,
+
 });
 
 export default mongoose.model('postdata', postschema);
