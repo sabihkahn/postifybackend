@@ -16,7 +16,7 @@ app.use(cors())
 app.post('/uplodimg', async (req, res) => {
     try {
             const {photo} = req.files
-            const { title, description, comments,followers,likes } = req.fields
+            const { title, description, comments,followers,likes,creator } = req.fields
             const data = fs.readFileSync(photo.path)
             const Photo = new Photomodel({
                 title: title,
